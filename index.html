@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Baby Diary</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Login -->
+    <div id="loginScreen" class="login-container center">
+        <h1>Baby Diary</h1>
+        <div class="card">
+            <input id="email" type="email" placeholder="Correo electrónico" />
+            <input id="password" type="password" placeholder="Contraseña" />
+            <button id="btnLogin">Iniciar Sesión</button>
+            <a href="#" class="link">¿Olvidaste tu contraseña?</a>
+        </div>
+    </div>
+
+    
+<!-- Child setup -->
+<div id="childSetup" class="login-container center hidden">
+    <h1>Registrar Hijos</h1>
+    <div class="card" style="gap:12px;">
+        <input type="text" id="childName" placeholder="Nombre del niño/a" />
+        <button id="btnAddChild">Agregar</button>
+        <ul id="childList" class="list"></ul>
+        <button id="btnStartApp" disabled>Comenzar</button>
+    </div>
+</div>
+
+    <!-- Single‑page App -->
+    <div id="app" class="hidden">
+        <!-- Fixed top bar -->
+        <header class="app-bar">
+            <select id="childSelect" class="child-select"></select>
+                <h2 id="sectionTitle">Registro de Alimentos</h2>
+            <div class="tabs">
+                <button data-target="food" class="tab active">Alimentos</button>
+                <button data-target="sleep" class="tab">Sueño</button>
+                <button data-target="diaper" class="tab">Pañales</button>
+                <button data-target="health" class="tab">Salud</button>
+            </div>
+        </header>
+
+        <!-- Scrollable content pane -->
+        <main id="content">
+            <!-- FOOD -->
+            <section id="section-food" class="section">
+                <form id="foodForm">
+                    <label>Cantidad (g)
+                        <input type="number" id="foodAmount" placeholder="Ej. 100" required/>
+                    </label>
+                    <label>Alimento
+                        <input type="text" id="foodName" placeholder="Ej. Puré de zanahoria" required/>
+                    </label>
+                    <label>Notas / Observaciones
+                        <textarea id="foodNotes" placeholder="Ej. Le gustó mucho"></textarea>
+                    </label>
+                    <button type="submit">Guardar alimento</button>
+                </form>
+                <ul id="foodList" class="list"></ul>
+            </section>
+
+            <!-- SLEEP -->
+            <section id="section-sleep" class="section hidden">
+                <div class="sleep-controls">
+                    <button id="btnStartSleep">Iniciar Sueño</button>
+                    <button id="btnStopSleep" disabled>Finalizar Sueño</button>
+                </div>
+                <p id="currentDuration"></p>
+                <table id="sleepTable">
+                    <thead>
+                        <tr><th>Inicio</th><th>Fin</th><th>Duración</th></tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
+
+            <!-- DIAPER -->
+            <section id="section-diaper" class="section hidden">
+                <form id="diaperForm">
+                    <label><input type="checkbox" id="chkPee">💧 Pipi</label>
+                    <label><input type="checkbox" id="chkPoop">💩 Popó</label>
+                    <label><input type="checkbox" id="chkMixed">💧+💩 Mixto</label>
+                    <textarea id="diaperNote" placeholder="Ej. Irritación leve"></textarea>
+                    <button type="submit">Registrar pañal</button>
+                </form>
+                <p id="diaperTotal"></p>
+                <table id="diaperTable">
+                    <thead>
+                        <tr><th>Hora</th><th>Tipo</th><th>Nota</th></tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
+
+            <!-- HEALTH -->
+            
+<section id="section-health" class="section hidden">
+    <form id="healthForm">
+        <label>Tipo
+            <select id="healthType" required>
+                <option value="">Seleccione...</option>
+                <option value="Crecimiento">Crecimiento</option>
+                <option value="Movimientos clave">Movimientos clave</option>
+                <option value="Alergias">Alergias</option>
+                <option value="Temperatura">Temperatura</option>
+                <option value="Medicamentos">Medicamentos</option>
+                <option value="Vacunas">Vacunas</option>
+            </select>
+        </label>
+        <label>Detalle
+            <input type="text" id="healthDetail" placeholder="Ej. 8.2 kg / Fiebre 38°C / Amoxicilina 5ml" required />
+        </label>
+        <button type="submit">Guardar registro</button>
+    </form>
+
+    <ul id="healthList" class="list"></ul>
+</section>
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
